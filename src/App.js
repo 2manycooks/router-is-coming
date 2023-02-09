@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import House from './components/House';
+import Houses from './components/Houses';
+import Member from './components/Member';
+import gameOfThrones from './gameOfThrones';
 import './App.css';
+import Header from './partial/Header';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+      <Header />
+        <Routes>
+          <Route path='/houses' element={<Houses gameOfThrones={gameOfThrones}/>}/>
+          <Route path='/houses/:id' element={<House gameOfThrones={gameOfThrones}/>}/>
+          <Route path='/houses/:houseid/member/:memberid' element={<Member gameOfThrones={gameOfThrones}/>}/>
+        </Routes>
+      </BrowserRouter>
+      
     </div>
   );
 }
